@@ -9,7 +9,7 @@ namespace WGConfig.NET.Validators
 {
     public class Config : IValidator
     {
-        public static string Error = String.Empty;
+        public string Error = String.Empty;
         
         
         public bool Validate(string data, out string err)
@@ -17,8 +17,11 @@ namespace WGConfig.NET.Validators
             err = string.Empty;
             bool checker = Task.Run(() => Checker(data)).Result;
             if (!checker)
+            {
                 err = Error;
                 return false;
+            }
+         
             return true;
         }
 
@@ -122,6 +125,8 @@ namespace WGConfig.NET.Validators
                             {
                                 if (!IpAddress.Validate(i))
                                 {
+                                    if (i.Equals(""))
+                                        continue;
                                     Error = "IpAddress Is Not Correct!";
                                     return false;
                                 }
