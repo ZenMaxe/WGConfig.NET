@@ -12,5 +12,6 @@
         public string AllowedIPs { get; set; } = "";
         public string AllowedApps { get; set; } = "";
         public string DisallowedIPs { get; set; } = "";
+        public string Name { get; set; } = "";
     }
 }

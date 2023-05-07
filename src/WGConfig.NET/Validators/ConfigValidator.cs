@@ -53,6 +53,7 @@ namespace WGConfig.NET.Validators
 
         public async Task<bool> ValidateConfigFileAsync(string filePath)
         {
+            var c = File.Exists(filePath);
             if (!File.Exists(filePath))
             {
                 return false;
@@ -157,9 +158,8 @@ namespace WGConfig.NET.Validators
                             }
                             config.DisallowedIPs = parts[1];
                             break;
-                        default:
-                            Error = "Config Is Not Correct!";
-                            return false;
+                        case "Name":
+                            config.Name = parts[1];
                             break;
                     }
                 }
